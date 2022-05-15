@@ -32,7 +32,8 @@
  */
 #ifndef CONFIGURATION_ADV_H
 #define CONFIGURATION_ADV_H
-#define CONFIGURATION_ADV_H_VERSION 010109
+// ANVA 20220515 New Configuration version
+#define CONFIGURATION_ADV_H_VERSION 220515-01
 
 // @section temperature
 

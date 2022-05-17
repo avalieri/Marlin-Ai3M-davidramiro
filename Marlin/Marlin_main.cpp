@@ -2413,6 +2413,11 @@ void clean_up_after_endstop_or_probe_move() {
 
           deploy ? run_deploy_moves_script() : run_stow_moves_script();
 
+        // ANVA 20220515 Enable M401/M402 Deploy/Stow BL Touch
+        #elif ENABLED(BLTOUCH)
+
+          set_bltouch_deployed(deploy);
+          
         #endif
 
     #ifdef _TRIGGERED_WHEN_STOWED_TEST
@@ -4463,9 +4468,10 @@ inline void gcode_G28(const bool always_home_all) {
   #endif
 
   #if ENABLED(BLTOUCH)
-    // Make sure any BLTouch error condition is cleared
+    // ANVA 20220518 Make sure any BLTouch error condition is cleared, stow BL Touch and save current BL Touch positiom
     bltouch_command(BLTOUCH_RESET, BLTOUCH_RESET_DELAY);
     set_bltouch_deployed(false);
+    report_current_position();
   #endif
 
   // Always home with tool 0 active

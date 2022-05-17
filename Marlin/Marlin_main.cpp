@@ -4468,10 +4468,10 @@ inline void gcode_G28(const bool always_home_all) {
   #endif
 
   #if ENABLED(BLTOUCH)
-    // ANVA 20220518 Make sure any BLTouch error condition is cleared, stow BL Touch and save current BL Touch positiom
+    // ANVA 20220518 Make sure any BLTouch error condition is cleared, stow BL Touch and save current BL Touch position
     bltouch_command(BLTOUCH_RESET, BLTOUCH_RESET_DELAY);
     set_bltouch_deployed(false);
-    report_current_position();
+    endstops.enable_z_probe(false);
   #endif
 
   // Always home with tool 0 active
